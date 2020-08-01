@@ -1,5 +1,12 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 use v5.10;
+use strict;
+use warnings;
+
+## LOCAL MODULES
+# make local dir accessible for use statements
+use FindBin qw( $RealBin );
+use lib $RealBin;
 
 use Point;
 use Region;
@@ -9,7 +16,7 @@ $b = new Point(1,0);
 
 say "Distance: " . $b->dist($a);
 
-$poly = new Region({Name=>'foo', Polygons=>[ [
+my $poly = new Region({Name=>'foo', Polygons=>[ [
   new Point(0,0),
   new Point(1,1),
   new Point(2,0),

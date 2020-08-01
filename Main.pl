@@ -1,11 +1,17 @@
-#!/usr/bin/perl -w
+#!/usr/bin/env perl
 use v5.10;
 use strict;
+use warnings;
 
 ################################
 # THE BOOK OF ELIZA
 #  an irreverent retelling of Exodus
 ################################
+
+## LOCAL MODULES
+# make local dir accessible for use statements
+use FindBin qw( $RealBin );
+use lib $RealBin;
 
 # classes
 use Point;
@@ -112,9 +118,9 @@ my @regions = (
       new Point(32.794189,28.748397),
       new Point(32.365723,29.563902)
     ], [
-      new Point(32.843628,29.272025), 
-      new Point(33.173218,28.984117), 
-      new Point(33.222656,28.173718), 
+      new Point(32.843628,29.272025),
+      new Point(33.173218,28.984117),
+      new Point(33.222656,28.173718),
       new Point(32.607422,28.979312)
     ],[
       new Point(33.195190,28.647210),
@@ -157,11 +163,11 @@ my @regions = (
       new Point(30.915283,31.503629)
     ]] }),
     new Region({ Name => 'the Dead Sea', Polygons => [ [
-      new Point(35.502319,31.758532), 
-      new Point(35.592957,31.749190), 
-      new Point(35.581970,31.468496), 
-      new Point(35.527039,31.316101), 
-      new Point(35.414429,31.323140), 
+      new Point(35.502319,31.758532),
+      new Point(35.592957,31.749190),
+      new Point(35.581970,31.468496),
+      new Point(35.527039,31.316101),
+      new Point(35.414429,31.323140),
       new Point(35.406189,31.564495)
     ]] }),
     new Region({ Name => 'the land far east of Canaan', Polygons => [ [
@@ -322,7 +328,7 @@ while (!$built_novel_OK)
 my $uneventful_days=0;
   debug("Day $day: ", $state{POSITION}->dump);
 
-  while( ! $state{FOUND_CANAAN} ) 
+  while( ! $state{FOUND_CANAAN} )
   {
     my $shortdesc = '';
     my $moveOK = 1;
@@ -350,8 +356,8 @@ my $uneventful_days=0;
     # Chapter opening sentence
     v("On the " . ordinal($day) . " day, " .
         pick(@party) . ' ' .
-	pick('again resumed','prepared and departed on','awoke early for','continued along','set out on') . ' ' .
-	pick('their journey','their travels','their way') . '.');
+        pick('again resumed','prepared and departed on','awoke early for','continued along','set out on') . ' ' .
+        pick('their journey','their travels','their way') . '.');
 
     # Weather and provisions report
     v(pick('The sky was','The day was','The morning was','The conditions were','The weather was','The climate was') . ' ' .
@@ -426,7 +432,7 @@ d($uneventful_days);
 d($uneventful_days);
           v("Joshua said unto Moses,",
               '"We should not travel this way - it leads to ' . $region->name . '!"',
-	      'Moses ' . pick('replied','answered','stated','said') . ' ' . pick('wisely','sagely','with great import') . ',',
+              'Moses ' . pick('replied','answered','stated','said') . ' ' . pick('wisely','sagely','with great import') . ',',
               '"' . pick("I knew that.","I was merely testing you.","Whoops.","Are you sure about that?") . '"',
               pick(@party) . " thus reversed their direction.");
 
@@ -463,14 +469,14 @@ if ($objects_seen{$city}>1)
   again($city,$objects_seen{$city});
 } else {
         v("At the end of the day's travel, " . pick(@party) . " reached $city.",
-		pick(@party) . " rejoiced at this sign of progress in their journey.",
-		'After a restful night, ' . pick(@party) . " were able to restock their provisions.");
+                pick(@party) . " rejoiced at this sign of progress in their journey.",
+                'After a restful night, ' . pick(@party) . " were able to restock their provisions.");
 }
 
         $shortdesc = 'Stopped in ' . $city;
         $needs_chapter_break = 1; }
 $last_visited = $city;
-	last;
+        last;
       }
     }
 
@@ -508,7 +514,7 @@ d($uneventful_days);
 $last_visited = 'Mount Sinai';
     } elsif ($state{PROVISIONS} == 0)
     {
-       # starvation 
+       # starvation
       debug("Party starved to death.");
 d($uneventful_days);
   my @died = ('died','expired','passed away','perished');

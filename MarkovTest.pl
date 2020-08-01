@@ -1,6 +1,11 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 use strict;
 use warnings;
+
+## LOCAL MODULES
+# make local dir accessible for use statements
+use FindBin qw( $RealBin );
+use lib $RealBin;
 
 use MarkovChain;
 
